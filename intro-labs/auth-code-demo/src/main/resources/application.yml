@@ -13,20 +13,22 @@ logging:
     org:
       springframework:
         web: info
-
+keycloak:
+  server:
+    url: http://localhost:8080
 democlient:
   authorization:
-    endpoint: http://localhost:8080/auth/realms/workshop/protocol/openid-connect/auth
+    endpoint: ${keycloak.server.url}/auth/realms/workshop/protocol/openid-connect/auth
     clientid: demo-client
     response-type: code
-    redirect-uri: http://localhost:9095/client/callback
+    redirect-uri: http://localhost:${server.port}/client/callback
     scope: offline_access
   token:
-    endpoint: http://localhost:8080/auth/realms/workshop/protocol/openid-connect/token
+    endpoint: ${keycloak.server.url}/auth/realms/workshop/protocol/openid-connect/token
     clientid: demo-client
-    client-secret: b3ec9d3f-d1ee-4a18-b4ba-05d832c15293
-    redirect-uri: http://localhost:9095/client/callback
+    client-secret: a450e87e-0150-4b52-92f5-76993506689f
+    redirect-uri: http://localhost:${server.port}/client/callback
   introspection:
-    endpoint: http://localhost:8080/auth/realms/workshop/protocol/openid-connect/token/introspect
+    endpoint: ${keycloak.server.url}/auth/realms/workshop/protocol/openid-connect/token/introspect
 
 
